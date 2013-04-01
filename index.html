@@ -1,74 +1,340 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Touch Paint</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="apple-mobile-web-app-capable" content="yes"/>
-	<link href="content/jquery.mobile-1.1.1.min.css" rel="stylesheet" type="text/css" />
-	<link href="content/style.css" rel="stylesheet" type="text/css" />
-	<script src="cordova-2.0.0.js" type="text/javascript" charset="utf-8"></script>
-	<script src="scripts/jquery-1.7.1.min.js" type="text/javascript" charset="utf-8"></script>
-	<script src="scripts/jquery.mobile-1.1.1.min.js" type="text/javascript" charset="utf-8"></script>
-	<style>
-	button.camera-control {
-	  background-color: #f3f3f3;
-	  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f3f3f3), color-stop(50%, #dddddd), color-stop(50%, #d2d2d2), color-stop(100%, #dfdfdf));
-	  background-image: -webkit-linear-gradient(top, #f3f3f3 0%, #dddddd 50%, #d2d2d2 50%, #dfdfdf 100%);
-	  background-image: linear-gradient(top, #f3f3f3 0%, #dddddd 50%, #d2d2d2 50%, #dfdfdf 100%);
-	  border-right: 1px solid #dfdfdf;
-	  border-bottom: 1px solid #b4b4b4;
-	  border-right: 1px solid #dfdfdf;
-	  -webkit-border-radius: 5px;
-	  border-radius: 5px;
-	  -webkit-box-shadow: inset 0 1px 0 0 white, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
-	  box-shadow: inset 0 1px 0 0 white, 0 1px 0 0 #d5d5d5, 0 -1px 2px 1px #efefef;
-	  color: #666;
-	  display: block;
-	  font: bold 16px "helvetica neue", helvetica, arial, sans-serif;
-	  margin: 10px auto;
-	  padding: 7px 0;
-	  text-shadow: 0 1px 1px #fff;
-	  width: 150px;
-	}
-	button.camera-control:hover {
-	    background-color: #e5e5e5;
-	    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e5e5e5), color-stop(50%, #d1d1d1), color-stop(50%, #c4c4c4), color-stop(100%, #b8b8b8));
-	    background-image: -webkit-linear-gradient(top, #e5e5e5 0%, #d1d1d1 50%, #c4c4c4 50%, #b8b8b8 100%);
-	    background-image: linear-gradient(top, #e5e5e5 0%, #d1d1d1 50%, #c4c4c4 50%, #b8b8b8 100%);
-	    -webkit-box-shadow: inset 0 1px 0 0 #f2f2f2, 0 1px 0 0 #c9c9c9, 0 -1px 2px 1px #e3e3e3;
-	    box-shadow: inset 0 1px 0 0 #f2f2f2, 0 1px 0 0 #c9c9c9, 0 -1px 2px 1px #e3e3e3; }
-	  button.camera-control:active {
-	    -webkit-box-shadow: inset 0 0 30px 0 #999999, 0 1px 0 0 white;
-	    box-shadow: inset 0 0 30px 0 #999999, 0 1px 0 0 white;
-	}
-	</style>
-	<script>
-	function capturePhoto(){
-	    navigator.camera.getPicture(uploadPhoto,null,{sourceType:1,quality:60});
-	}
+    <meta charset="utf-8" />
+    <title>JSON Sample</title>
+      <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+      
+      <script>
+    $.getJSON('datos.json', function(data) {
+          var output="<ul>";
+          
+          for (var i in data.users) {
+              output+="<li>" + data.users[i].firstName + " " + data.users[i].lastName + " - " + data.users[i].joined.month+" / "+ data.users[i].joined.day+"</li>";
+          }
 
-	function uploadPhoto(data){
-	// this is where you would send the image file to server
-	//output image to screen
-	    cameraPic.src = "data:image/jpeg;base64," + data;
-	}
-	</script>
+          output+="</ul>";
+          document.getElementById("placeholder").innerHTML=output;
+    });
+      </script>
 </head>
 <body>
-	<div id="page1" data-role="page" data-rnc-jspage="paintPage">
-		<section id="content" data-role="content">
+    <div id="placeholder"></div>
 
-			<div id="camera">
-			    <button class="camera-control" onclick="capturePhoto();">Capture Photo</button>
-			    <div style="text-align:center;margin:20px;">
-			        <img id="cameraPic" src="" style="width:auto;height:120px;"></img>
-			    </div>
-			</div>
-
-		</section>
-	</div>
-	<script src="scripts/app.js" type="text/javascript"></script>
-	<script src="scripts/paintPage.js" type="text/javascript"></script>
 </body>
 </html>
+
+
+
+
+<!-- <!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>APP</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.3.0.css" />
+	<link rel="stylesheet"  href="css/sportafterwork.css" />
+
+	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile-1.3.0.js" type="text/javascript"></script>
+
+	<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+	<script src="js/messages_fr.js" type="text/javascript"></script>
+
+	<script>
+		
+		$(document).ready(function() {
+			$("#reporte").validate();
+		});
+		
+	</script>
+
+</head>
+
+<body>
+	<section id="paso1" data-role="page" data-theme="d"> 	
+		<header data-role="header">
+			<h1>REPORTE DE INSTALACIÓN</h1>
+		</header>
+		<article data-role="content">
+			<img src="images/logo.jpg" alt="">
+			<form action="proceso.php" method="post" id="reporte"accept-charset="utf-8">
+				<div>
+					<strong>Fecha: </strong>
+					<label for="fecha" id="fecha">
+						<script>
+						var f = new Date();
+						document.write(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
+						</script>
+					</label>
+				</div>
+				<div>
+					<strong>Nombre Instalador: </strong> 
+					<label for="nombre" id="nom_instalador">Lorem Impusm </label>
+				</div>
+				<div>
+					<strong>Código Instalador: </strong> 
+					<label for="cod_instalador" id="cod_instalador">123456-30</label>
+				</div>
+				<div>
+					<strong>Contacto Instalador: </strong> 
+					<label for="contacto_instalador" id="contacto_instalador">7737-2864</label>
+				</div><br>
+				<div style="width:250px !important;">
+					<label for="num_reporte" >Número de reporte: </label>
+					<input type="tel"  name="num_reporte" class="required number" value="" placeholder="Ingrese Número Reporte"  maxlength="5">
+				</div>
+			
+				<div data-role="">
+					<label for="razon_social" >Razón Social Outsoucing: </label><br>
+					<input type="text" name="razon_social" value="" class="required" placeholder="Ingrese Razón Social">
+				</div>
+				
+                <h2 class="titulo">Datos Distribuidor</h2>
+                <div data-role="">
+                	<label for="dis_codigo" >Código: </label><br>
+                	<input type="text" name="dis_codigo" value="" placeholder="Ingrese Código Distribuidor">
+                </div>
+                <div data-role="">
+                	<label for="dis_nombre" >Nombre: </label><br>
+                	<input type="text" name="dis_nombre" value="" placeholder="Ingrese Nombre Distribuidor">
+                </div>
+                <div data-role="" style="width:250px !important;">
+                	<label for="dis_num_identificacion" >Número Identificación: </label><br>
+                	<input type="text" name="dis_num_identificacion" value="" placeholder="Número Identificación">
+                </div>
+                <div data-role="">
+                	<label for="dis_telefono" >Teléfono: </label><br>
+                	<input type="text" name="dis_telefono" value="" placeholder="Ingrese Teléfono Distribuidor">
+                </div>
+                <div data-role="collapsible" class="ui-icon-alt" data-theme="c" data-content-theme="d" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+                    <h4>Direccion del Distribuidor</h4>
+                    <div data-role="">
+                		<label for="dis_calle" >Calle: </label><br>
+                		<input type="text" name="dis_calle" value="" placeholder="Ingrese Calle ">
+                	</div>
+                	<div data-role="">
+                		<label for="dis_num_casa" >Número: </label><br>
+                		<input type="text" name="dis_num_casa" value="" placeholder="Ingrese Número de casa">
+                	</div>
+                	<div data-role="">
+                		<label for="dis_ciudad" >ciudad: </label><br>
+                		<input type="text" name="dis_ciudad" value="" placeholder="Ingrese ciudad ">
+                	</div>
+                	<label for="dis_departamento">Departamento</label>
+                	<select name="dis_departamento" id="dis_departamento" class="required">
+                		<option value="">-- Seleccione Departamento --</option>
+                		<option value="Ahuachapán">Ahuachapán</option>
+                		<option value="Cabañas">Cabañas</option>
+                		<option value="Chalatenango">Chalatenango</option>
+                		<option value="Cuscatlán">Cuscatlán</option>
+                		<option value="La Libertad">La Libertad</option>
+                		<option value="La Paz">La Paz</option>
+                		<option value="La Unión">La Unión</option>
+                		<option value="Morazán">Morazán</option>
+                		<option value="San Miguel">San Miguel</option>
+                		<option value="San Salvador">San Salvador</option>
+                		<option value="San Vicente">San Vicente</option>
+                		<option value="Santa Ana">Santa Ana	</option>
+                		<option value="Sonsonate">Sonsonate</option>
+                		<option value="Usulután">Usulután</option>
+                	</select>
+                   
+                </div>
+
+                <h2 class="titulo">Datos Clientes</h2>
+                <div data-role="">
+                	<label for="cli_codigo" >Código: </label><br>
+                	<input type="text" name="cli_codigo" value="" placeholder="Ingrese Código Cliente">
+                </div>
+                <div data-role="">
+                	<label for="cli_razon" >Razón Social: </label><br>
+                	<input type="text" name="cli_razon" value="" placeholder="Ingrese Razón Social Cliente">
+                </div>
+                <div data-role="">
+                	<label for="cli_nombre" >Nombre Comercial: </label><br>
+                	<input type="text" name="cli_nombre" value="" placeholder="Ingrese Nombre Cliente">
+                </div>
+                <div data-role="">
+                	<label for="cli_contacto" >Nombre Contacto: </label><br>
+                	<input type="text" name="cli_contacto" value="" placeholder="Ingrese Nombre Contacto">
+                </div>
+                <div data-role="">
+                	<label for="cli_telefono" >Teléfono: </label><br>
+                	<input type="text" name="cli_telefono" value="" placeholder="Ingrese Teléfono Cliente">
+                </div>
+                <div data-role="collapsible" class="ui-icon-alt" data-theme="c" data-content-theme="d" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+                    <h4>Direccion del Cliente</h4>
+                    <div data-role="">
+                		<label for="cli_calle" >Calle: </label><br>
+                		<input type="text" name="cli_calle" value="" placeholder="Ingrese Calle ">
+                	</div>
+                	<div data-role="">
+                		<label for="cli_num_casa" >Número: </label><br>
+                		<input type="text" name="cli_num_casa" value="" placeholder="Ingrese Número de casa">
+                	</div>
+                	<div data-role="">
+                		<label for="cli_ciudad" >Ciudad: </label><br>
+                		<input type="text" name="cli_ciudad" value="" placeholder="Ingrese Ciudad ">
+                	</div>
+                	<label for="cli_departamento">Departamento</label>
+                	<select name="cli_departamento" id="cli_departamento" >
+                		<option value="Ahuachapán">Ahuachapán</option>
+                		<option value="Cabañas">Cabañas</option>
+                		<option value="Chalatenango">Chalatenango</option>
+                		<option value="Cuscatlán">Cuscatlán</option>
+                		<option value="La Libertad">La Libertad</option>
+                		<option value="La Paz">La Paz</option>
+                		<option value="La Unión">La Unión</option>
+                		<option value="Morazán">Morazán</option>
+                		<option value="San Miguel">San Miguel</option>
+                		<option value="San Salvador">San Salvador</option>
+                		<option value="San Vicente">San Vicente</option>
+                		<option value="Santa Ana">Santa Ana	</option>
+                		<option value="Sonsonate">Sonsonate</option>
+                		<option value="Usulután">Usulután</option>
+                	</select>
+                   
+                </div>
+				
+                <button type="button" data-icon="plus" data-theme="b" data-iconpos="right" data-mini="true" data-inline="true" id="add">Añadir</button>
+                <button type="button" data-icon="minus" data-theme="b" data-iconpos="right" data-mini="true" data-inline="true" id="delete-dispensador">Eliminar</button>
+
+                <div data-role="collapsible-set" data-content-theme="d" id="set">
+                    <div data-role="collapsible" id="set1" data-collapsed="false">
+                        <h3>Dispensador 1</h3>
+                        <p>Lorem</p>
+                    </div>
+                </div>
+
+                <fieldset class="ui-grid-a" style="width: 80%">
+                    <div class="ui-block-a"><button type="reset" data-theme="d">Borrar</button></div>
+                    <div class="ui-block-b"><button type="submit" data-theme="b">Guardar</button></div>	   
+                </fieldset> 
+
+			</form>
+
+		</article>	
+		
+			
+			 
+			<script type="text/javascript">
+			$(function() {
+			   // Save input value to localStorage
+			   $('#save').on('click', function() {
+			      var username = $('#username').val();
+			      localStorage.setItem("username", username);
+			   });
+			   // Load input value from localStorage
+			   $('#load').on('click', function() {
+			      var username = localStorage.getItem('username') || '<empty>';
+			      $('#username').val(username);
+			   });
+			   // Clear localStorage
+			   $('#clear').on('click', function() {
+			      localStorage.clear();
+			   });
+			});
+
+
+
+			$(document).on("pageinit", function() {
+			    var nextId = 1;
+			    $("#add").click(function() {
+			        nextId++;
+			        var content = "<div data-role='collapsible' data-collapsed='false' id='set" + nextId + "'><h3>Dispensador " + nextId + "</h3><p>Lorem</p></div>";
+			        $("#set").append( content ).collapsibleset('refresh');
+			    });
+			    $("#delete-dispensador").click(function() {
+			            nextId--;
+			            $("#set").children(":last").remove();
+			            $("#set").children(":last").trigger( "expand" );
+			        });
+			   
+			});
+			</script>
+	</section>
+
+		
+	</section>
+
+</body>
+</html> -->
+ 
+<!-- <!DOCTYPE html> 
+<html>
+<head> 
+<title>Sportafterwork - Contact</title> 
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="touch-icon-iphone.png" />
+<link sizes="72x72" href="touch-icon-ipad.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="touch-icon-iphone4.png" />
+
+<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.3.0.css" />
+<link rel="stylesheet"  href="css/sportafterwork.css" />
+
+<script src="js/jquery.js"></script>
+<script src="js/jquery.mobile-1.3.0.js" type="text/javascript"></script>
+
+<script src="js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="js/messages_fr.js" type="text/javascript"></script>
+
+<script>
+	
+	$(document).ready(function() {
+		$("#form").validate();
+	});
+	
+</script>
+
+</head> 
+<body> 
+	¿
+
+CONTACT
+
+<div data-role="page" id="contact" data-theme="c">
+	
+    <div data-role="header" data-theme="a">
+    <a href="#" class="ui-btn-left ui-btn-back" data-icon="arrow-l" data-back="true" onClick="history.back();" >Retour</a>
+		<h1>Contact</h1>
+    </div>
+    <div data-role="content">
+
+        <div class="centerAuto">
+            <form action="contact.php" method="post" id="form" name="form">
+            	<input name="fromSaw" type="hidden" value="1">
+                <div data-role="" data-theme="c">
+                	<p class="justify">También puede contactar con nosotros gracias al formulario de contacto de abajo. Le responderemos tan pronto como sea posible.</p>
+                    <label for="nom">Nom / prénom :</label>
+                    <input data-theme="d" type="text" name="nom" id="nom" value="" autocorrect = "on" class="required" />
+                    <label for="email">Email :</label>
+                    <input data-theme="d" name="email" id="email" value="" type="email" autocorrect = "on" class="required email" />
+                    <label for="tel">Téléphone :</label>
+                    <input data-theme="d" name="tel" id="tel" value="" type="tel" maxlength="10" minlength="10" autocorrect = "on" class="required number" />
+                    <label for="message">Message :</label>
+                    <textarea data-theme="d" cols="40" rows="8" name="message" id="message" autocorrect = "on" class="required"></textarea>
+                </div> 
+                <fieldset class="ui-grid-a">
+                    <div class="ui-block-a"><button type="reset" data-theme="d">Borrar</button></div>
+                    <div class="ui-block-b"><button type="submit" data-theme="a">Enviar</button></div>	   
+                </fieldset>                
+            </form>
+   	  </div>
+
+  </div>
+  <div data-role="footer" data-theme="a" style="height:33px">
+        <a href="" data-role="button" data-icon="arrow-l" style="margin-left:15px;" data-rel="back">Retour</a>
+        <a href="javascript:scroll(0,0);" data-role="button" data-icon="arrow-u" style="float:right; margin-right:15px;">Haut</a>
+    </div>
+</div>
+
+
+</body>
+</html>  -->
