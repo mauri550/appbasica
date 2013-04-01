@@ -53,7 +53,7 @@
                      }
                      else{
                         navigator.notification.beep(1)
-                        showAlert();
+                        navigator.notification.alert('Error en usuario y/o contrasena', alertCallback, 'Error', 'reintentar')
                         
                      };
                });
@@ -61,15 +61,7 @@
 
 
        });
-    
-    function showAlert() {
-    navigator.notification.alert(
-    'Los paremetros no coinciden',     // mensaje (message)
-    alertDismissed,         // función 'callback' (alertCallback)
-    'Error en la Autenticacion',            // titulo (title)
-    'Cerrar'                // nombre del botón (buttonName)
-    );
-    }
+   
 
     $(document).ready(function () {
          
