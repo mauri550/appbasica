@@ -52,22 +52,24 @@
                          window.location="#page-form1";
                      }
                      else{
-                        navigator.notification.beep(1);
-                        function showAlert() {
-                        navigator.notification.alert(
-                            'Usuario y/o Contrasena no coinciden',     // mensaje (message)
-                            alertDismissed,         // función 'callback' (alertCallback)
-                            'Autenticacion Fallida',            // titulo (title)
-                            'Cerrar'                // nombre del botón (buttonName)
-                        );
-                        }
-                        );
+                        navigator.notification.beep(1)
+                        showAlert();
+                        
                      };
                });
            });
 
 
        });
+    
+    function showAlert() {
+    navigator.notification.alert(
+    'Los paremetros no coinciden',     // mensaje (message)
+    alertDismissed,         // función 'callback' (alertCallback)
+    'Error en la Autenticacion',            // titulo (title)
+    'Cerrar'                // nombre del botón (buttonName)
+    );
+    }
 
     $(document).ready(function () {
          
