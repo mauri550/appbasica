@@ -3,6 +3,8 @@
         {
             "firstName": "Ray",
             "lastName": "Villalobos",
+            "userName": "malfaro",
+            "password": "123",
             "joined": {
                 "month": "January",
                 "day": 12,
