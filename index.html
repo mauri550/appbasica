@@ -53,11 +53,14 @@
                      }
                      else{
                         navigator.notification.beep(1);
+                        function showAlert() {
                         navigator.notification.alert(
-                            'Usuario y/o Contraseña no coinciden',     // mensaje (message)
+                            'Usuario y/o Contrasena no coinciden',     // mensaje (message)
                             alertDismissed,         // función 'callback' (alertCallback)
                             'Autenticacion Fallida',            // titulo (title)
                             'Cerrar'                // nombre del botón (buttonName)
+                        );
+                        }
                         );
                      };
                });
