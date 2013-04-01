@@ -52,8 +52,13 @@
                          window.location="#page-form1";
                      }
                      else{
-                        alert("Datos incorrectos.");
-                        navigator.notification.beep(2);
+                        navigator.notification.beep(1);
+                        navigator.notification.alert(
+                            'Usuario y/o Contraseña no coinciden',     // mensaje (message)
+                            alertDismissed,         // función 'callback' (alertCallback)
+                            'Autenticacion Fallida',            // titulo (title)
+                            'Cerrar'                // nombre del botón (buttonName)
+                        );
                      };
                });
            });
